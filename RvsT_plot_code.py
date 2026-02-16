@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Nov 19 14:47:02 2025
-
-@author: arupb
-"""
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -92,3 +85,4 @@ plt.xlabel("Temperature (C)")
 plt.ylabel("Resistance (Ω)")
 plt.show()
 #-------------------------------------------------------------------------------------------------------------------------
+
