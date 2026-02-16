@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Feb 16 15:43:32 2026
-
-@author: arupb
-"""
-
 from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -13,33 +6,33 @@ mainpath=Path(r"C:\Users\arupb\OneDrive - Indian Institute of Science\DCP Data\1
 
 Vt_forward=[]
 Vt_backward=[]
-
-for file in sorted(mainpath.glob("*.csv"),key=lambda x: x.stat().st_mtime):
+#-----------------------------------------------FIND THE TRANSITION VOLTAGES-----------------------------------------------------------------
+for file in sorted(mainpath.glob("*.csv"),key=lambda x: x.stat().st_mtime):   #Runs in a folder where files are sorted accordint to timestamp
     data=pd.read_csv(file,skiprows=254)
     mid=len(data)//2
-    forward=data.iloc[:mid]     #Forward sweep data
-    Vf=forward.iloc[:,1]        #Forward sweep voltage
-    If=forward.iloc[:,2]        #Forward sweep current
-    backward=data.iloc[mid:]    #Backward sweep data
-    Vb=backward.iloc[:,1]       #Backward sweep voltage
-    Ib=backward.iloc[:,2]       #Backward sweep current
+    forward=data.iloc[:mid]                                                   #Forward sweep data
+    Vf=forward.iloc[:,1]                                                      #Forward sweep voltage
+    If=forward.iloc[:,2]                                                      #Forward sweep current
+    backward=data.iloc[mid:]                                                  #Backward sweep data
+    Vb=backward.iloc[:,1]                                                     #Backward sweep voltage
+    Ib=backward.iloc[:,2]                                                     #Backward sweep current
     
     compliance=5e-4
     for i in range(len(If)):
-        if(If.iloc[i]>0.99*compliance):
+        if(If.iloc[i]>0.99*compliance):                                      #Finds where the current hits compliance in forward sweep
             Vt_forward.append(Vf.iloc[i])
             break
     
-    for i in range(len(Ib)):
-        if(Ib.iloc[i]<0.99*compliance):
+    for i in range(len(Ib)):                                    
+        if(Ib.iloc[i]<0.99*compliance):                                      #Finds where the current hits compliance in backward sweep
             Vt_backward.append(Vb.iloc[i])
             break
 
-stable_forward = sum(Vt_forward[-50:]) / 50
-stable_backward = sum(Vt_backward[-50:]) / 50    
-  
+stable_forward = sum(Vt_forward[-50:]) / 50                                  #Finds stable transition voltage by averaging last 50 values
+stable_backward = sum(Vt_backward[-50:]) / 50                                #Finds stable transition voltage by averaging last 50 values
+#---------------------------------------------------------PLOTTING---------------------------------------------------------------------------
 plt.rcParams['font.family'] = 'serif'
-plt.rcParams['font.serif'] = ['Times New Roman']
+plt.rcParams['font.serif'] = ['Times New Roman']                               
 plt.figure(dpi=300)
 plt.plot(Vt_forward, 'o-', fillstyle='none', label='Forward transition')
 plt.plot(Vt_backward, 'o-', fillstyle='none', label='Backward transition')
@@ -53,4 +46,5 @@ plt.tick_params(direction='in', labelsize=12)
 plt.legend(fontsize=12)
 plt.legend()
 plt.tight_layout()
+
 plt.show()
