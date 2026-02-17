@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Feb 17 13:00:21 2026
-
-@author: arupb
-"""
-
 from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -13,7 +6,7 @@ mainpath=Path(r"C:\Users\arupb\OneDrive - Indian Institute of Science\DCP Data\1
 
 Vt_forward=[]
 Vt_backward=[]
-
+#----------------------------------------------------FIND TRANSITION VOLTAGES-----------------------------------------------------------------
 for file in sorted(mainpath.glob("*.csv"),key=lambda x: x.stat().st_mtime):
     data=pd.read_csv(file,skiprows=252)
     mid=len(data)//2
@@ -24,12 +17,12 @@ for file in sorted(mainpath.glob("*.csv"),key=lambda x: x.stat().st_mtime):
     Ib=backward.iloc[:,1]
     Vb=backward.iloc[:,2]
     
-    Vt_forward.append(max(Vf))
-    Vt_backward.append(max(Vb))
+    Vt_forward.append(max(Vf))                             #Max voltage in the array is transition voltage
+    Vt_backward.append(max(Vb))                            #Max voltage in the array is transition voltage
 
-stable_forward = sum(Vt_forward[-50:]) / 50
-stable_backward = sum(Vt_backward[-50:]) / 50    
-  
+stable_forward = sum(Vt_forward[-50:]) / 50                #Average of last 50 measurements (forward)
+stable_backward = sum(Vt_backward[-50:]) / 50              #Average of last 50 measurements (backward)    
+#----------------------------------------------------------PLOTTING--------------------------------------------------------------------------  
 plt.rcParams['font.family'] = 'serif'
 plt.rcParams['font.serif'] = ['Times New Roman']
 plt.figure(dpi=300)
@@ -45,4 +38,5 @@ plt.tick_params(direction='in', labelsize=12)
 plt.legend(fontsize=12)
 plt.legend()
 plt.tight_layout()
+
 plt.show()
