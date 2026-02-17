@@ -6,7 +6,7 @@ mainpath=Path(r"C:\Users\arupb\OneDrive - Indian Institute of Science\DCP Data\1
 
 It_forward=[]
 It_backward=[]
-
+#-----------------------------------------------------FIND TRANSITION CURRENTS----------------------------------------------------------------
 for file in sorted(mainpath.glob("*.csv"),key=lambda x: x.stat().st_mtime):
     data=pd.read_csv(file,skiprows=252)
     mid=len(data)//2
@@ -17,16 +17,16 @@ for file in sorted(mainpath.glob("*.csv"),key=lambda x: x.stat().st_mtime):
     Ib=backward.iloc[:,1]
     Vb=backward.iloc[:,2]
     
-    idx_maxf = Vf.idxmax()
-    I_transitionf = If.loc[idx_maxf]
-    It_forward.append(I_transitionf)
-    idx_maxb = Vb.idxmax()
-    I_transitionb = Ib.loc[idx_maxb]
-    It_backward.append(I_transitionb)
+    idx_maxf = Vf.idxmax()                                #index of maximum voltage
+    I_transitionf = If.loc[idx_maxf]                      #current value at that index where V is max
+    It_forward.append(I_transitionf)                      #append the value to the array
+    idx_maxb = Vb.idxmax()                                #index of maximum voltage
+    I_transitionb = Ib.loc[idx_maxb]                      #current value at that index where V is max
+    It_backward.append(I_transitionb)                     #append the value to the array
 
-stable_forward = sum(It_forward[-50:]) / 50
-stable_backward = sum(It_backward[-50:]) / 50    
-  
+stable_forward = sum(It_forward[-50:]) / 50               #average of last 50 measurements (forward)
+stable_backward = sum(It_backward[-50:]) / 50             #average of last 50 measurements (backward)
+#-------------------------------------------------------------PLOTTING----------------------------------------------------------------------  
 plt.rcParams['font.family'] = 'serif'
 plt.rcParams['font.serif'] = ['Times New Roman']
 plt.figure(dpi=300)
@@ -44,3 +44,4 @@ plt.legend()
 plt.tight_layout()
 
 plt.show()
+
