@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Feb 17 13:00:21 2026
-
-@author: arupb
-"""
-
 from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -49,4 +42,5 @@ plt.tick_params(direction='in', labelsize=12)
 plt.legend(fontsize=12)
 plt.legend()
 plt.tight_layout()
+
 plt.show()
