@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Feb 17 14:11:51 2026
-
-@author: arupb
-"""
-
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -30,4 +23,5 @@ plt.tick_params(direction='in', labelsize=12)
 plt.legend(fontsize=12)
 plt.legend()
 plt.tight_layout()
+
 plt.show()
