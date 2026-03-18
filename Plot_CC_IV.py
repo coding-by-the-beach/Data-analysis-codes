@@ -12,15 +12,16 @@ Vb=backward.iloc[:,2]
 
 plt.rcParams['font.family'] = 'serif'
 plt.rcParams['font.serif'] = ['Times New Roman']
-plt.figure(dpi=300)
-plt.plot(Vf,If*1e3, 'o-', fillstyle='none', label='Forward sweep')
-plt.plot(Vb,Ib*1e3, 'o-', fillstyle='none', label='Backward sweep')
-plt.xlabel("Voltage (in V)",fontsize=12)
-plt.ylabel("Current (in mA)",fontsize=12)
-plt.title("Current controlled IV",fontsize=12)
-plt.tick_params(direction='in', labelsize=12)
-plt.legend(fontsize=12)
+plt.figure(dpi=300,figsize=(4,3))
+plt.plot(Vf,If*1e3, 'o-', fillstyle='none', color='#ff7f0e', markersize=4, label='Forward sweep')
+plt.plot(Vb,Ib*1e3, 'o-', fillstyle='none', color='#1f77b4', markersize=4, label='Backward sweep')
+plt.xlabel("Voltage (in V)",fontsize=10)
+plt.ylabel("Current (in mA)",fontsize=10)
+plt.title("Current controlled IV",fontsize=10)
+plt.tick_params(direction='in', labelsize=8)
+plt.xticks(fontsize=8)
+plt.yticks(fontsize=8)
+plt.legend(fontsize=8)
 plt.legend()
 plt.tight_layout()
-
-plt.show()
+plt.show() 
