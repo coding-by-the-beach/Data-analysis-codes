@@ -72,17 +72,23 @@ for folder in mainpath2.iterdir():
         temperature_data2.append(temperature)
         resistance_data2.append(np.average(resistance))
 #-------------------------------------------------------------------------------------------------------------------------
-plt.figure(dpi=300)
+plt.figure(dpi=300,figsize=(4,3))
 plt.rcParams['font.family'] = 'serif'
 plt.rcParams['font.serif'] = ['Times New Roman']
-plt.plot(temperature_data1,resistance_data1,'o-',color='#F46D43',fillstyle='none',label='Heating')
-plt.plot(temperature_data2,resistance_data2,'o-',color='#3288BD',fillstyle='none',label='Cooling')
+plt.plot(temperature_data1,resistance_data1,'o-',color='#ff7f0e',fillstyle='none',markersize=4,label='Heating')
+plt.plot(temperature_data2,resistance_data2,'o-',color='#1f77b4',fillstyle='none',markersize=4,label='Cooling')
 plt.tick_params(axis='both',which='both',direction='in')
 plt.legend(loc="lower left")
-plt.title('Resistance vs Temperature plot')
+plt.title('Resistance vs Temperature plot',fontsize=10)
 plt.yscale('log')
-plt.xlabel("Temperature (C)")
-plt.ylabel("Resistance (Ω)")
+plt.xlabel("Temperature (°C)",fontsize=10)
+plt.ylabel("Resistance (Ω)",fontsize=10)
+plt.tick_params(direction='in', labelsize=10)
+plt.legend(fontsize=8)
+plt.xticks(fontsize=8)
+plt.yticks(fontsize=8)
+plt.legend()
+plt.tight_layout()
 plt.show()
 #-------------------------------------------------------------------------------------------------------------------------
 
