@@ -7,4 +7,6 @@ In this repository, I have added codes that I use for data analysis of IV measur
 
 
 MATLAB Files:
-1. "TLM_Analysis_MATLAB.m" plots the Resistance vs Length of IV curves. Variable "filenames" takes filenames of all files containing TLM IV. In each excel file there are multiple IV runs in separate sheets. This code fits each IV to a Resistance 'R_sheet' and it takes average of all 'R_sheet' for a particular excel file (which is for a single electrode config/ length), and stores in 'R_avg'; The standard deviation of 'R_sheet' is stored in 'R_std'. Plot is done with errorbars as the values in 'R_std'. 
+1. "TLM_Analysis_MATLAB.m" plots the Resistance vs Length of IV curves. Variable "filenames" takes filenames of all files containing TLM IV. In each excel file there are multiple IV runs in separate sheets. This code fits each IV to a Resistance 'R_sheet' and it takes average of all 'R_sheet' for a particular excel file (which is for a single electrode config/ length), and stores in 'R_avg'; The standard deviation of 'R_sheet' is stored in 'R_std'. Plot is done with errorbars as the values in 'R_std'.
+
+2. "VC_IV_MATLAB.m" plots the variation of transition voltage with measurements. It assumes the transition voltage where current crosses 90% of compliance value. Set the compliance value according to measurement. Set the voltage range in plot, according to measurement.
