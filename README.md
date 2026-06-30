@@ -3,7 +3,7 @@ In this repository, I have added codes that I use for data analysis of IV measur
 
 1. "V_transition_VC.py" determines the variation of transition voltages with respect to measurement. Change the folder path to the relevant data directory. It assumes that all data sweeps are double directional Voltage controlled measurements and the transition is when the current hits the compliance value. Adjust the compliance value according to measurement. It also plots a line for the stable transition voltage value; It is taken as an average of the last 50 measurements, adjust it accordingly.
 2. Variation of transition voltages (in "V_transition_CC.py") and transition currents (in "I_transition_CC.py") is analysed for Current controlled measurements. Change the folder path to the relevant data directory. It assumes that all data sweeps are double directional Current controlled measurements and the transition is when the voltage is maximum, right before it starts to reduce with increasing current (NDR). It also plots a line for the stable transition voltage value; It is taken as an average of the last 50 measurements, adjust it accordingly.
-3. "RvsT_plot_code.py" plot the resistance vs temperature in heating and cooling cycle. Change the folder path to the relevant data directory. Inside this folder, keep two separate folders as "Heating" and "Cooling". Inside these, Keep IV sweeps for a particular temperature, in one folder, with folder name as the temperature value. 
+3. "RvsT_plot_code.py" plots the resistance vs temperature in heating and cooling cycle. Change the folder path to the relevant data directory. Inside this folder, keep two separate folders as "Heating" and "Cooling". Inside these, Keep IV sweeps for a particular temperature, in one folder, with folder name as the temperature value. 
 
 
 MATLAB Files:
@@ -12,3 +12,5 @@ MATLAB Files:
 2. "VC_IV_MATLAB.m" plots the variation of transition voltage with measurements. It assumes the transition voltage where current crosses 90% of compliance value. Set the compliance value according to measurement. Set the voltage range in plot, according to measurement.
 
 3. "IV_Plot_All_MATLAB.m" plot all the IV sweeps in an excel file, one on top of another. Please change the title of plot accordingly(Current controlled/ Voltage controlled).
+
+4. 'Keysight_connect.m' is a code for experiment. Individual code blocks should be run sequentially. It connects (creates objects and opens) through VISA-USB connection. Then it configures the SMU and Oscilloscope to the settings mentioned in comments. Then it triggers the SMU and Oscilloscope according to the Trigger level set in oscilloscope (manually! since the trigger level command doesnt work). There is a separate block to save the waveform on oscilloscope display, change the folder address accordingly. Before saving the waveform, stop the SMU and Oscilloscope. Then finish by closing the instruments and deleting the instrument objects.
